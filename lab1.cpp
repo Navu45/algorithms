@@ -59,7 +59,7 @@ public:
     this->size_ += 1;
   }
 
-  void pop(size_t idx) {
+  void remove(size_t idx) {
     Node *currNode = this->head_, *prevNode = nullptr;
     for (size_t i = 0; i < idx; i++) {
       prevNode = currNode;
@@ -82,6 +82,13 @@ public:
     Node *currNode = this->find_(idx);
     if (currNode != nullptr) {
       currNode->value = value;
+    }
+  }
+
+  void insert(size_t idx, T value) {
+    Node *currNode = this->find_(idx - 1);
+    if (currNode != nullptr) {
+      currNode->next = new Node(value, currNode->next);
     }
   }
 
@@ -121,7 +128,7 @@ int main() {
   // Remove element
   cout << "Remove: ";
   cin >> in;
-  list.pop(in);
+  list.remove(in);
   list.print();
 
   // Replace element
@@ -129,5 +136,11 @@ int main() {
   int in1;
   cin >> in >> in1;
   list.update(in, in1);
+  list.print();
+  
+  // Insert element
+  cout << "Insert: ";
+  cin >> in >> in1;
+  list.insert(in, in1);
   list.print();
 }
