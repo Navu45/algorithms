@@ -73,7 +73,7 @@ generic void List<T>::update(size_t idx, T value) {
 
 generic size_t List<T>::size() const { return this->list_->get_size(); }
 
-generic bool List<T>::empty() const { return this->size_ == 0; }
+generic bool List<T>::empty() const { return this->list_->get_size() == 0; }
 
 generic void List<T>::print() {
   Node2L<T> *curr_node = this->list_->get_head();
