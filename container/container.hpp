@@ -83,6 +83,7 @@ gen_cont Container<T, N>::~Container() { this->del_node(this->head_); }
 gen_cont Container<T, N>::Container() {
   this->head_ = nullptr;
   this->tail_ = nullptr;
+  this->size_ = 0;
 }
 
 #endif // EXTEND_HPP

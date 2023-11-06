@@ -53,10 +53,12 @@ generic void List<T>::remove(size_t idx) {
     return;
   if (node->prev == nullptr) {
     this->list_->set_head(node->next);
-    node->next->prev = nullptr;
+    if (node->next != nullptr)
+      node->next->prev = nullptr;
   } else if (node->next == nullptr) {
     this->list_->set_tail(node->prev);
-    node->prev->next = nullptr;
+    if (node->prev != nullptr)
+      node->prev->next = nullptr;
   } else {
     this->connect_(node->prev, node->next);
   }
