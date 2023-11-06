@@ -2,8 +2,20 @@
 #define EXTEND_H
 
 #include <iostream>
+using namespace std;
+
+#if !defined(GENERIC)
+#define GENERIC
+
+#define gen_container template <typename T, class N>
+#define generic template <typename T>
+
+#endif // GENERIC
 
 template <typename T, class N> class Container {
+
+  // class N must have fields "value" of type T and "next"
+  // and constructor N(T value)
 public:
   Container();
   ~Container();
@@ -18,14 +30,16 @@ public:
   void set_head(N *node);
   void set_tail(N *node);
 
-  N *get_head();
-  N *get_tail();
+  N *get_head() const;
+  N *get_tail() const;
 
   N *index(size_t idx);
 
   void increment();
   void decrement();
-  size_t get_size();
+  size_t get_size() const;
+
+  void print() const;
 
 private:
   N *head_;
@@ -36,5 +50,14 @@ private:
 };
 
 #include "container.hpp"
+
+gen_container class IExtend {
+protected:
+  Container<T, N> *store_;
+
+public:
+  IExtend() { this->store_ = new Container<T, N>(); }
+  ~IExtend() { delete this->store_; }
+};
 
 #endif // EXTEND_H

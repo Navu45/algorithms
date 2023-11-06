@@ -2,10 +2,8 @@
 #define LIST_H
 
 #include "../container/container.h"
-#include <iostream>
-using namespace std;
 
-template <typename T> class Node2L {
+generic class Node2L {
 public:
   T value;
   Node2L *next;
@@ -19,15 +17,11 @@ public:
       : value(value), next(next), prev(prev) {}
 };
 
-template <typename T> class List {
+generic class List : public IExtend<T, Node2L<T>> {
 private:
-  Container<T, Node2L<T>> *list_;
-
-  void connect_(Node2L<T> *node, Node2L<T> *nextNode);
+  void connect_(Node2L<T> *node, Node2L<T> *next_node);
 
 public:
-  List();
-  ~List();
   void push_back(T value);
   void push_front(T value);
   void remove(size_t idx);
