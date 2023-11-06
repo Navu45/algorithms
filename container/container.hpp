@@ -60,7 +60,7 @@ gen_cont void Container<T, N>::del_node(N *node) {
 }
 
 gen_cont N *Container<T, N>::index_(N *node, size_t curr_idx,
-                                   size_t target_idx) {
+                                    size_t target_idx) {
   if (curr_idx == target_idx) {
     return node;
   } else {

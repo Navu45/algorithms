@@ -47,15 +47,17 @@ generic void List<T>::insert(size_t idx, T value) {
   }
 }
 
+generic T List<T>::index(size_t idx) const { return this->list_->index(idx)->value; }
+
 generic void List<T>::remove(size_t idx) {
   Node2L<T> *node = this->list_->index(idx);
   if (node == nullptr)
     return;
-  if (node->prev == nullptr) {
+  if (node == this->list_->get_head()) {
     this->list_->set_head(node->next);
     if (node->next != nullptr)
       node->next->prev = nullptr;
-  } else if (node->next == nullptr) {
+  } else if (node == this->list_->get_tail()) {
     this->list_->set_tail(node->prev);
     if (node->prev != nullptr)
       node->prev->next = nullptr;
@@ -64,6 +66,11 @@ generic void List<T>::remove(size_t idx) {
   }
   delete node;
   this->list_->decrement();
+
+  if (this->size() == 0) {
+    this->list_->set_head(nullptr);
+    this->list_->set_tail(nullptr);
+  }
 }
 
 generic void List<T>::update(size_t idx, T value) {
@@ -77,13 +84,16 @@ generic size_t List<T>::size() const { return this->list_->get_size(); }
 
 generic bool List<T>::empty() const { return this->list_->get_size() == 0; }
 
-generic void List<T>::print() {
+generic void print_(Node2L<T> *node) {
+  cout << node->value << (node->next != nullptr ? ", " : "");
+  if (node->next != nullptr)
+    print_(node->next);
+}
+
+generic void List<T>::print() const {
   Node2L<T> *curr_node = this->list_->get_head();
   cout << "[ ";
-  while (curr_node != nullptr) {
-    cout << curr_node->value << (curr_node->next != nullptr ? ", " : "");
-    curr_node = curr_node->next;
-  }
+  print_(curr_node);
   cout << " ]" << endl;
 }
 

@@ -22,6 +22,7 @@ public:
 template <typename T> class List {
 private:
   Container<T, Node2L<T>> *list_;
+
   void connect_(Node2L<T> *node, Node2L<T> *nextNode);
 
 public:
@@ -32,9 +33,10 @@ public:
   void remove(size_t idx);
   void update(size_t idx, T value);
   void insert(size_t idx, T value);
+  T index(size_t idx) const;
   bool empty() const;
   size_t size() const;
-  void print();
+  void print() const;
 };
 
 #include "list.hpp"

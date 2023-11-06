@@ -8,12 +8,6 @@ int main() {
   // Push to front
   for (size_t i = 0; i < n; i++) {
     cin >> in;
-    list.push_front(in);
-  }
-
-  // Push to back
-  for (size_t i = 0; i < n; i++) {
-    cin >> in;
     list.push_back(in);
   }
   list.print();
@@ -36,4 +30,9 @@ int main() {
   cin >> in >> in1;
   list.insert(in, in1);
   list.print();
+
+  // Index
+  cout << "Get at index: ";
+  cin >> in;
+  cout << list.index(in) << endl;
 }
