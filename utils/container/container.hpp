@@ -89,9 +89,9 @@ template <typename N> void print_(N *node) {
 
 gen_container void Container<T, N>::print() const {
   N *curr_node = this->get_head();
-  cout << "[ ";
+  cout << "[";
   print_(curr_node);
-  cout << " ]" << endl;
+  cout << "]" << endl;
 }
 
 #endif // EXTEND_HPP

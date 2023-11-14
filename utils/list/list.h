@@ -27,10 +27,12 @@ public:
   void remove(size_t idx);
   void update(size_t idx, T value);
   void insert(size_t idx, T value);
-  T index(size_t idx) const;
+  T& index(size_t idx) const;
   bool empty() const;
   size_t size() const;
   void print() const;
+  T& operator[](size_t idx) const;
+  void operator+=(T value);
 };
 
 #include "list.hpp"

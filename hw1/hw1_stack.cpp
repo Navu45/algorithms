@@ -1,4 +1,4 @@
-#include "stack/stack.h"
+#include "../utils/stack/stack.h"
 
 int main() {
   Stack<int> stack;
@@ -12,7 +12,7 @@ int main() {
   }
   stack.print();
 
-  // 
+  //
   cout << "Top: " << stack.top() << endl;
 
   // Pop

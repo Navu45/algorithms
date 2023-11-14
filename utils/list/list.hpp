@@ -42,9 +42,17 @@ generic void List<T>::insert(size_t idx, T value) {
   }
 }
 
-generic T List<T>::index(size_t idx) const {
+generic T& List<T>::index(size_t idx) const {
   Node2L<T> *node = this->store_->index(idx);
-  return node != nullptr ? node->value : NULL;
+  return node->value;
+}
+
+generic T& List<T>::operator[](size_t index) const {
+  return this->index(index);
+}
+
+generic void List<T>::operator+=(T value) {
+  this->push_back(value);
 }
 
 generic void List<T>::remove(size_t idx) {
@@ -65,7 +73,7 @@ generic void List<T>::remove(size_t idx) {
   delete node;
   this->store_->decrement();
 
-  if (this->size() == 0) {
+  if (this->empty()) {
     this->store_->set_head(nullptr);
     this->store_->set_tail(nullptr);
   }

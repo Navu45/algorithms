@@ -1,4 +1,4 @@
-#include "list/list.h"
+#include "../utils/list/list.h"
 
 int main() {
   List<int> list;
@@ -24,7 +24,7 @@ int main() {
   cin >> in >> in1;
   list.update(in, in1);
   list.print();
-  
+
   // Insert element
   cout << "Insert: ";
   cin >> in >> in1;
